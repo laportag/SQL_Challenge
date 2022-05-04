@@ -1,0 +1,10 @@
+1) select * from actor;
+2) select * from actor where first_name = 'John';
+3) select * from actor where last_name = 'Neeson';
+4) select * from actor where actor_id % 10 = 0;
+5) select description from film where film_id = 100;
+6) select * from film where rating = 'R';
+7) select * from film where rating != 'R';
+8) select * from film order by length asc limit 10;
+9) select * from film where length = (select max(length) from film);
+10)
