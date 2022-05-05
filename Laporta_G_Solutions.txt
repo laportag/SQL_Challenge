@@ -14,16 +14,16 @@ Sakila
 13) select first_name, last_name from actor_info join film_actor on actor_info.actor_id = film_actor.actor_id group by actor_info.actor_id order by count(*) desc limit 1;
 14) 
 15) select avg(length) from film;
-16) 
-17)
-18) select * from film where release_year = "2010";   
+16) select category.name, avg(film.length) from category join film_category on film_category.category_id = category.category_id join film on film.film_id = film_category.film_id group by category.category_id order by avg(film.length) desc;
+17) select * from film_text where description like "%robot%";
+18) select count(release_year) from film where release_year = "2010";   
 19) select title, category from film_list where category = "Horror";
 20) select first_name, last_name from staff where staff_id = 2;
-21)
-22)
-23)
-24)
-25)
+21) select title, first_name, last_name from film_actor as FA join film as F on F.film_id = FA.film_id join actor as A on FA.actor_id = A.actor_id where last_name = "Costner" and first_name = "Fred";
+22) WORLD
+23) WORLD
+24) select first_name, last_name from actor where last_name like "%son" order by first_name asc;
+25) 
 
 World
 
