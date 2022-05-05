@@ -38,18 +38,25 @@ Sakila
 World
 
 1) select CountryCode, count(CountryCode) from city where CountryCode = "USA";
-2) 
-3)
-4)
-5)
-6)
-7)
-8)
-9)
-10)
-11)
-12)
-13)
+2) select Name, Population, LifeExpectancy from country where Name = "Argentina";
+3) select Name, LifeExpectancy from country where LifeExpectancy is not null order by LifeExpectancy desc limit 1;
+4) select * from country 
+    join city as c on country.capital = c.ID where country.Name = "Spain";
+5) select countrycode, language from countrylanguage
+    join country as c on countrylanguage.countrycode = c.code
+    where region = "Southeast Asia";
+6) select Name from city where Name like "F%" limit 25;
+7) select count(*) from city 
+    join country as c on city.CountryCode = c.Code
+    where c.name = "China"
+8) select * from country where population > 1
+    order by population asc limit 1;
+9) select count(Name) from country;
+10) select name, surfacearea from country order by surfacearea desc limit 10;
+11) select name, population from city where countrycode = "JPN" order by population desc limit 5;
+12) update country set HeadOfState = "Elizabeth II" where HeadOfState = "Elisabeth II"
+    select * from country where HeadOfState = "Elizabeth II";
+13) select name, population/surfacearea, population, surfacearea from country where population/surfacearea > 0 order by population/surfacearea desc limit 10;
 14)
 15)
 16)
