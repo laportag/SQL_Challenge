@@ -49,7 +49,7 @@ World
 7) select count(*) from city 
     join country as c on city.CountryCode = c.Code
     where c.name = "China"
-8) select * from country where population > 1
+8) select * from country where population > 1 and population is not null
     order by population asc limit 1;
 9) select count(Name) from country;
 10) select name, surfacearea from country order by surfacearea desc limit 10;
@@ -57,13 +57,25 @@ World
 12) update country set HeadOfState = "Elizabeth II" where HeadOfState = "Elisabeth II"
     select * from country where HeadOfState = "Elizabeth II";
 13) select name, population/surfacearea, population, surfacearea from country where population/surfacearea > 0 order by population/surfacearea desc limit 10;
-14)
-15)
-16)
-17)
-18)
-19)
-20)
+14) select distinct language, countrycode from countrylanguage;
+15) select GNP, Name from country order by GNP desc limit 10;
+16) select countrylanguage.countrycode, count(countrylanguage.countrycode), country.name from countrylanguage
+    join country on country.code = countrylanguage.countrycode
+    group by country.name
+    order by count(countrylanguage.countrycode) desc
+    limit 10;
+17) select countrycode, language, percentage, country.name from countrylanguage
+    join country on country.code = countrylanguage.countrycode 
+    where language = "German" and percentage > 50;
+18) select name, lifeexpectancy from country
+    where lifeexpectancy is not null and LifeExpectancy > 0
+    order by lifeexpectancy asc
+    limit 1;
+19) select governmentform, count(governmentform) from country
+    group by governmentform
+    order by count(governmentform) desc
+    limit 3;
+20) select count(indepyear) from country;
 
 Movielens
 
