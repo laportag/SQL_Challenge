@@ -27,7 +27,10 @@ Sakila
     join actor as A on FA.actor_id = A.actor_id 
     where last_name = "Costner" and first_name = "Fred";
 22) WORLD
+    select distinct count(name) from country;
 23) WORLD
+    select language from countrylanguage
+    order by language desc;
 24) select first_name, last_name from actor where last_name like "%son" order by first_name asc;
 25) select name, count(fc.film_id) from category
     join film_category as fc on category.category_id = fc.category_id
@@ -79,8 +82,28 @@ World
 
 Movielens
 
-1)
-2)
-3)
-4)
-5)
+1)  select title, release_date from movies
+    where release_date > 1982-12-31 and release_date < 1993-01-01
+    order by release_date desc;
+
+2) select title,  from movies  
+    join ratings on ratings.movie_id = movies.id
+    group by movies.title 
+     = (
+        select avg(rating) as AR from ratings
+        group by movie_id
+        
+    )
+    
+3)  
+
+4) select title, release_date from movies
+    where release_date = (
+        select release_date from movies
+        group by release_date
+        order by count(title) desc
+        limit 1
+    );
+    
+5) select * from movies
+    join 
