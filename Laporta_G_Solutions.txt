@@ -12,7 +12,12 @@ Sakila
 11) select distinct last_name from actor having last_name is not null order by last_name desc;
 12) select last_name, count(last_name) from actor group by last_name having count(last_name) > 1 order by count(last_name) desc;
 13) select first_name, last_name from actor_info join film_actor on actor_info.actor_id = film_actor.actor_id group by actor_info.actor_id order by count(*) desc limit 1;
-14) 
+14) select rental.return_date, rental.inventory_id, inventory.film_id, film.title
+    from film
+    join inventory on film.film_id = inventory.film_id
+    join rental on rental.inventory_id = inventory.inventory_id
+    where film.title = "Academy Dinosaur" 
+    and rental.return_date is null and rental.rental_date is not null;
 15) select avg(length) from film;
 16) select category.name, avg(film.length) from category 
     join film_category on film_category.category_id = category.category_id 
@@ -90,10 +95,20 @@ Movielens
     join ratings on ratings.movie_id = movies.id
     where rating = 1
     group by movie_id
-    order by avg(ratings.rating) asc;
+    having avg(ratings.rating) = (
+    select min(rating) from ratings
+    );   
     
-    
-3)  
+3) select movies.id, title from movies
+    join genres_movies on genres_movies.movie_id=movies.id
+    join genres on genres_movies.genre_id = genres.id
+    join ratings on ratings.movie_id = movies.id
+    join users on users.id = ratings.user_id
+    join occupations on occupations.id = users.occupation_id
+    where ratings.rating = 5 
+    and users.age = "24" and users.gender = "m"
+    and occupations.name = "Student"
+    and genres.name = "Sci-Fi";
 
 4) select title, release_date from movies
     where release_date = (
